@@ -119,15 +119,15 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                     <svg viewBox="0 0 520 40" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
                       <defs>
                         <linearGradient id="fluidFade" x1="0" y1="0" x2="1" y2="0">
-                          <stop offset="0" stopColor="oklch(0.78 0.2 230)" stopOpacity="0" />
-                          <stop offset="0.5" stopColor="oklch(0.78 0.2 230)" stopOpacity="0.55" />
-                          <stop offset="1" stopColor="oklch(0.78 0.2 230)" stopOpacity="0" />
+                          <stop offset="0" stopColor="#74d6ff" stopOpacity="0" />
+                          <stop offset="0.5" stopColor="#74d6ff" stopOpacity="0.55" />
+                          <stop offset="1" stopColor="#74d6ff" stopOpacity="0" />
                         </linearGradient>
                         <mask id="fluidMask">
                           <rect width="520" height="40" fill="url(#fluidFade)" />
                         </mask>
                       </defs>
-                      <g mask="url(#fluidMask)" stroke="oklch(0.78 0.2 230)" fill="none" strokeWidth="0.7">
+                      <g mask="url(#fluidMask)" stroke="#74d6ff" fill="none" strokeWidth="0.7">
                         {[8, 14, 20, 26, 32].map((y, i) => (
                           <motion.path
                             key={i}
