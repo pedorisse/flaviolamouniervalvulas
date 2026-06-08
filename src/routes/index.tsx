@@ -56,6 +56,7 @@ function Index() {
         >
           <Hero />
           <About />
+          <Solutions />
           <Projects />
           <BrazilMap />
           <Gallery />
