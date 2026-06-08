@@ -36,7 +36,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
     <div className="fixed inset-0 z-[100] bg-deep grain overflow-hidden">
       {/* Ambient radial glows */}
       <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
-        backgroundImage: "radial-gradient(circle at 20% 50%, oklch(0.55 0.18 230 / 0.15), transparent 50%), radial-gradient(circle at 80% 30%, oklch(0.72 0.16 235 / 0.1), transparent 50%)",
+        backgroundImage: "radial-gradient(circle at 20% 50%, rgb(22 139 234 / 0.15), transparent 50%), radial-gradient(circle at 80% 30%, rgb(77 183 255 / 0.1), transparent 50%)",
       }} />
 
       {/* Ambient particles — "infrastructure is alive" */}
@@ -50,7 +50,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
               top: `${p.y}%`,
               width: p.size,
               height: p.size,
-              boxShadow: "0 0 6px oklch(0.78 0.2 230 / 0.6)",
+              boxShadow: "0 0 6px rgb(116 214 255 / 0.6)",
             }}
             animate={{ opacity: [0, 0.7, 0], y: [0, -20, -40] }}
             transition={{ duration: p.d, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
@@ -63,9 +63,9 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
         <svg viewBox="0 0 1000 90" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="oklch(0.72 0.16 235)" stopOpacity="0" />
-              <stop offset="0.5" stopColor="oklch(0.85 0.2 225)" stopOpacity="1" />
-              <stop offset="1" stopColor="oklch(0.72 0.16 235)" stopOpacity="0" />
+              <stop offset="0" stopColor="#4db7ff" stopOpacity="0" />
+              <stop offset="0.5" stopColor="#a6ecff" stopOpacity="1" />
+              <stop offset="1" stopColor="#4db7ff" stopOpacity="0" />
             </linearGradient>
             <filter id="flowGlow">
               <feGaussianBlur stdDeviation="2" result="b"/>
@@ -73,10 +73,10 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
             </filter>
           </defs>
           {/* base pipe */}
-          <g stroke="oklch(1 0 0 / 0.12)" strokeWidth="1" fill="none">
+          <g stroke="rgb(244 251 255 / 0.12)" strokeWidth="1" fill="none">
             <path d="M0 40 L200 40 L240 20 L520 20 L560 60 L820 60 L860 40 L1000 40" />
             {[200,240,520,560,820,860].map((x,i)=>(
-              <circle key={i} cx={x} cy={i%2?20:40} r="3" fill="oklch(0.72 0.16 235 / 0.4)" stroke="none" />
+              <circle key={i} cx={x} cy={i%2?20:40} r="3" fill="rgb(77 183 255 / 0.4)" stroke="none" />
             ))}
           </g>
           {/* flowing light loop */}
