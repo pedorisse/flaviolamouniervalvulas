@@ -31,8 +31,8 @@ export function About() {
           className="md:col-span-5 relative"
         >
           <div className="relative aspect-[3/4] overflow-hidden">
-            <img src={portrait} alt="Flávio" className="w-full h-full object-cover grayscale contrast-110" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+            <img src={portrait} alt="Flávio Lamounier" className="w-full h-full object-cover" loading="lazy" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 border-l-2 border-aqua">
               <div className="text-aqua text-[10px] uppercase tracking-[0.4em] mb-1">Consultor de Negócios</div>
               <div className="font-display text-2xl">Flávio Lamounier</div>
