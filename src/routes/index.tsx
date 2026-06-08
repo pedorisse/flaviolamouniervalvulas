@@ -59,7 +59,7 @@ function Index() {
           <Solutions />
           <Projects />
           <ExperienceAreas />
-          <Gallery />
+          
           <Knowledge />
           <ValveScroll />
           <Partners />
