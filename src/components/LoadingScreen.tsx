@@ -9,25 +9,27 @@ const phrases = [
 export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
   const [phase, setPhase] = useState(0);
   const [showEnter, setShowEnter] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const t1 = setTimeout(() => setPhase(1), 2600);
     const t2 = setTimeout(() => setPhase(2), 5200);
     const t3 = setTimeout(() => setShowEnter(true), 6400);
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
-  // Pre-computed particle positions for ambient life
+  // Client-only to avoid SSR hydration mismatch from Math.random()
   const particles = useMemo(
-    () => Array.from({ length: 18 }).map((_, i) => ({
+    () => mounted ? Array.from({ length: 18 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       d: 6 + Math.random() * 10,
       delay: Math.random() * 5,
       size: Math.random() < 0.3 ? 2 : 1,
-    })),
-    []
+    })) : [],
+    [mounted]
   );
 
   return (
