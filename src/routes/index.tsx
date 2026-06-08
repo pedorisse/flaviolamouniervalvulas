@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Solutions } from "@/components/Solutions";
 import { Projects } from "@/components/Projects";
 import { BrazilMap } from "@/components/BrazilMap";
 import { Gallery } from "@/components/Gallery";
@@ -55,6 +56,7 @@ function Index() {
         >
           <Hero />
           <About />
+          <Solutions />
           <Projects />
           <BrazilMap />
           <Gallery />
