@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 
 const phrases = [
@@ -94,33 +94,23 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
         </svg>
       </div>
 
-      {/* CENTER CONTENT — 40 / 20 / 40 distribution */}
+      {/* CENTER CONTENT — stable visible fallback, animations are decorative only */}
       <div className="absolute inset-0 flex items-center justify-center px-6">
         <div className="w-full max-w-4xl flex flex-col items-center justify-center text-center">
-          <AnimatePresence mode="wait">
-            {phase < 2 && (
-              <motion.p
-                key={phase}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.9 }}
-                className="font-display text-xl md:text-3xl text-foreground/90 font-light tracking-wide text-balance"
-              >
-                {phrases[phase]}
-              </motion.p>
-            )}
-
-            {phase === 2 && (
-              <motion.div
+          {phase < 2 ? (
+            <p
+              key={phase}
+              className="loader-visible-copy loader-fade-in font-display text-xl md:text-3xl font-light tracking-wide text-balance"
+            >
+              {phrases[phase]}
+            </p>
+          ) : (
+              <div
                 key="name"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="flex flex-col items-center gap-8 w-full"
+                className="loader-fade-in flex flex-col items-center gap-8 w-full"
               >
                 <div className="space-y-4">
-                  <h1 className="font-display text-6xl md:text-8xl font-extralight tracking-[0.3em] text-foreground">
+                  <h1 className="loader-visible-copy font-display text-5xl min-[390px]:text-6xl md:text-8xl font-extralight tracking-[0.22em] md:tracking-[0.3em]">
                     FLÁVIO
                   </h1>
 
@@ -156,30 +146,23 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                     </svg>
                   </div>
 
-                  <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">
+                  <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.28em] md:tracking-[0.4em] leading-relaxed">
                     Especialista em Válvulas Industriais &amp; Tubulações PEAD
                   </p>
                 </div>
 
-                <AnimatePresence>
-                  {showEnter && (
-                    <motion.button
-                      onClick={onEnter}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.8 }}
-                      className="premium-cta group relative px-14 py-4 text-foreground uppercase tracking-[0.45em] text-xs font-display"
-                    >
-                      <span className="relative z-10">Conheça</span>
-                      <span className="premium-cta__border" aria-hidden />
-                      <span className="premium-cta__sheen" aria-hidden />
-                    </motion.button>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                {showEnter && (
+                  <button
+                    onClick={onEnter}
+                    className="loader-fade-in premium-cta group relative px-14 py-4 text-foreground uppercase tracking-[0.38em] md:tracking-[0.45em] text-xs font-display"
+                  >
+                    <span className="relative z-10">Conheça</span>
+                    <span className="premium-cta__border" aria-hidden />
+                    <span className="premium-cta__sheen" aria-hidden />
+                  </button>
+                )}
+              </div>
             )}
-          </AnimatePresence>
         </div>
       </div>
     </div>
