@@ -107,7 +107,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                 onClick={onEnter}
                 className="group relative px-12 py-4 border border-aqua/40 text-foreground uppercase tracking-[0.3em] text-xs font-display hover:border-aqua transition-all duration-500 overflow-hidden"
               >
-                <span className="relative z-10">Entrar</span>
+                <span className="relative z-10">Conheça</span>
                 <span className="absolute inset-0 bg-aqua/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               </button>
             </motion.div>
