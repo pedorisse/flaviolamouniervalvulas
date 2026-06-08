@@ -27,15 +27,17 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/30 to-background" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/40" />
 
-      <div className="relative z-10 h-full flex flex-col justify-end pb-24 px-6 md:px-16 max-w-7xl mx-auto">
+      <div className="relative z-10 h-full flex flex-col justify-center items-center px-6 md:px-16 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4, delay: 0.3 }}
-          className="space-y-8 max-w-4xl"
+          className="space-y-8 max-w-4xl translate-y-[15vh]"
         >
           <div className="flex items-center gap-3 text-aqua text-xs uppercase tracking-[0.4em]">
-            <span className="w-8 h-px bg-aqua" />
+            <span className="relative w-8 h-px bg-aqua overflow-hidden">
+              <span className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-aqua animate-travel-line" />
+            </span>
             Portfólio · 2026
           </div>
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-extralight leading-[1.05] text-balance">
