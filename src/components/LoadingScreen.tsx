@@ -100,6 +100,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
           {phase < 2 ? (
             <p
               key={phase}
+              style={{ color: "#f4fbff" }}
               className="loader-visible-copy loader-fade-in font-display text-xl md:text-3xl font-light tracking-wide text-balance"
             >
               {phrases[phase]}
@@ -110,7 +111,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                 className="loader-fade-in flex flex-col items-center gap-8 w-full"
               >
                 <div className="space-y-4">
-                  <h1 className="loader-visible-copy font-display text-5xl min-[390px]:text-6xl md:text-8xl font-extralight tracking-[0.22em] md:tracking-[0.3em]">
+                  <h1 style={{ color: "#f4fbff" }} className="loader-visible-copy font-display text-5xl min-[390px]:text-6xl md:text-8xl font-extralight tracking-[0.22em] md:tracking-[0.3em]">
                     FLÁVIO
                   </h1>
 
@@ -146,7 +147,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                     </svg>
                   </div>
 
-                  <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.28em] md:tracking-[0.4em] leading-relaxed">
+                  <p style={{ color: "#74d6ff" }} className="text-xs md:text-sm uppercase tracking-[0.28em] md:tracking-[0.4em] leading-relaxed">
                     Especialista em Válvulas Industriais &amp; Tubulações PEAD
                   </p>
                 </div>
@@ -154,6 +155,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                 {showEnter && (
                   <button
                     onClick={onEnter}
+                    style={{ color: "#f4fbff" }}
                     className="loader-fade-in premium-cta group relative px-14 py-4 text-foreground uppercase tracking-[0.38em] md:tracking-[0.45em] text-xs font-display"
                   >
                     <span className="relative z-10">Conheça</span>
