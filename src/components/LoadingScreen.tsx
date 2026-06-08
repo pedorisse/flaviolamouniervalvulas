@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const phrases = [
   "Grandes cidades dependem de infraestrutura invisível.",
@@ -17,55 +17,84 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
+  // Pre-computed particle positions for ambient life
+  const particles = useMemo(
+    () => Array.from({ length: 18 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      d: 6 + Math.random() * 10,
+      delay: Math.random() * 5,
+      size: Math.random() < 0.3 ? 2 : 1,
+    })),
+    []
+  );
+
   return (
-    <div className="fixed inset-0 z-[100] bg-deep grain flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 opacity-30" style={{
+    <div className="fixed inset-0 z-[100] bg-deep grain overflow-hidden">
+      {/* Ambient radial glows */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
         backgroundImage: "radial-gradient(circle at 20% 50%, oklch(0.55 0.18 230 / 0.15), transparent 50%), radial-gradient(circle at 80% 30%, oklch(0.72 0.16 235 / 0.1), transparent 50%)",
       }} />
 
-      <div className="relative w-full max-w-5xl px-6">
-        {/* Wireframe pipeline */}
-        <svg viewBox="0 0 1000 200" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
+      {/* Ambient particles — "infrastructure is alive" */}
+      <div className="absolute inset-0 pointer-events-none">
+        {particles.map(p => (
+          <motion.span
+            key={p.id}
+            className="absolute rounded-full bg-aqua"
+            style={{
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: p.size,
+              height: p.size,
+              boxShadow: "0 0 6px oklch(0.78 0.2 230 / 0.6)",
+            }}
+            animate={{ opacity: [0, 0.7, 0], y: [0, -20, -40] }}
+            transition={{ duration: p.d, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
+          />
+        ))}
+      </div>
+
+      {/* TOP PIPELINE — continuous flowing light loop */}
+      <div className="absolute top-0 left-0 right-0 px-6 pt-6">
+        <svg viewBox="0 0 1000 90" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
-            <linearGradient id="pipeGrad" x1="0" y1="0" x2="1" y2="0">
+            <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0" stopColor="oklch(0.72 0.16 235)" stopOpacity="0" />
-              <stop offset="0.5" stopColor="oklch(0.78 0.2 230)" stopOpacity="1" />
+              <stop offset="0.5" stopColor="oklch(0.85 0.2 225)" stopOpacity="1" />
               <stop offset="1" stopColor="oklch(0.72 0.16 235)" stopOpacity="0" />
             </linearGradient>
-            <filter id="pipeGlow">
-              <feGaussianBlur stdDeviation="3" result="b"/>
+            <filter id="flowGlow">
+              <feGaussianBlur stdDeviation="2" result="b"/>
               <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
           </defs>
-          {/* outer pipeline shapes */}
-          <g stroke="oklch(1 0 0 / 0.15)" strokeWidth="1" fill="none">
-            <path d="M0 100 L200 100 L260 60 L500 60 L560 140 L800 140 L860 100 L1000 100" />
-            <path d="M0 110 L200 110 L260 70 L500 70 L560 150 L800 150 L860 110 L1000 110" />
-            {/* joints */}
-            {[200,260,500,560,800,860].map((x,i)=>(<circle key={i} cx={x} cy={i%2?70:60} r="6" />))}
+          {/* base pipe */}
+          <g stroke="oklch(1 0 0 / 0.12)" strokeWidth="1" fill="none">
+            <path d="M0 40 L200 40 L240 20 L520 20 L560 60 L820 60 L860 40 L1000 40" />
+            {[200,240,520,560,820,860].map((x,i)=>(
+              <circle key={i} cx={x} cy={i%2?20:40} r="3" fill="oklch(0.72 0.16 235 / 0.4)" stroke="none" />
+            ))}
           </g>
-          {/* flowing light */}
+          {/* flowing light loop */}
           <motion.path
-            d="M0 105 L200 105 L260 65 L500 65 L560 145 L800 145 L860 105 L1000 105"
-            stroke="url(#pipeGrad)"
-            strokeWidth="3"
+            d="M0 40 L200 40 L240 20 L520 20 L560 60 L820 60 L860 40 L1000 40"
+            stroke="url(#flowGrad)"
+            strokeWidth="2"
             fill="none"
-            filter="url(#pipeGlow)"
-            strokeDasharray="1200"
-            initial={{ strokeDashoffset: 1200 }}
-            animate={{ strokeDashoffset: 0 }}
-            transition={{ duration: 6, ease: "easeInOut" }}
-          />
-          <motion.circle
-            r="5" fill="oklch(0.85 0.18 220)" filter="url(#pipeGlow)"
-            initial={{ offsetDistance: "0%" }}
-            animate={{ offsetDistance: "100%" }}
-            transition={{ duration: 6, ease: "easeInOut" }}
-            style={{ offsetPath: "path('M0 105 L200 105 L260 65 L500 65 L560 145 L800 145 L860 105 L1000 105')" } as React.CSSProperties}
+            filter="url(#flowGlow)"
+            strokeDasharray="180 2000"
+            initial={{ strokeDashoffset: 0 }}
+            animate={{ strokeDashoffset: -2180 }}
+            transition={{ duration: 9, ease: "linear", repeat: Infinity }}
           />
         </svg>
+      </div>
 
-        <div className="mt-16 text-center min-h-[120px]">
+      {/* CENTER CONTENT — 40 / 20 / 40 distribution */}
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <div className="w-full max-w-4xl flex flex-col items-center justify-center text-center">
           <AnimatePresence mode="wait">
             {phase < 2 && (
               <motion.p
@@ -79,40 +108,77 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                 {phrases[phase]}
               </motion.p>
             )}
+
             {phase === 2 && (
               <motion.div
                 key="name"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
-                className="space-y-3"
+                className="flex flex-col items-center gap-8 w-full"
               >
-                <h1 className="font-display text-6xl md:text-8xl font-extralight tracking-[0.3em] text-foreground">FLÁVIO</h1>
-                <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">Especialista em Válvulas Industriais & Tubulações PEAD</p>
+                <div className="space-y-4">
+                  <h1 className="font-display text-6xl md:text-8xl font-extralight tracking-[0.3em] text-foreground">
+                    FLÁVIO
+                  </h1>
+
+                  {/* FLUID LINES — hydraulic flow under name */}
+                  <div className="relative h-10 w-[min(520px,80vw)] mx-auto overflow-hidden">
+                    <svg viewBox="0 0 520 40" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="fluidFade" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0" stopColor="oklch(0.78 0.2 230)" stopOpacity="0" />
+                          <stop offset="0.5" stopColor="oklch(0.78 0.2 230)" stopOpacity="0.55" />
+                          <stop offset="1" stopColor="oklch(0.78 0.2 230)" stopOpacity="0" />
+                        </linearGradient>
+                        <mask id="fluidMask">
+                          <rect width="520" height="40" fill="url(#fluidFade)" />
+                        </mask>
+                      </defs>
+                      <g mask="url(#fluidMask)" stroke="oklch(0.78 0.2 230)" fill="none" strokeWidth="0.7">
+                        {[8, 14, 20, 26, 32].map((y, i) => (
+                          <motion.path
+                            key={i}
+                            d={`M-520 ${y} Q-390 ${y - 3} -260 ${y} T0 ${y} T260 ${y} T520 ${y} T780 ${y} T1040 ${y}`}
+                            opacity={0.35 - i * 0.04}
+                            animate={{ x: [0, 520] }}
+                            transition={{
+                              duration: 14 + i * 2,
+                              ease: "linear",
+                              repeat: Infinity,
+                              delay: i * 0.6,
+                            }}
+                          />
+                        ))}
+                      </g>
+                    </svg>
+                  </div>
+
+                  <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">
+                    Especialista em Válvulas Industriais &amp; Tubulações PEAD
+                  </p>
+                </div>
+
+                <AnimatePresence>
+                  {showEnter && (
+                    <motion.button
+                      onClick={onEnter}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.8 }}
+                      className="premium-cta group relative px-14 py-4 text-foreground uppercase tracking-[0.45em] text-xs font-display"
+                    >
+                      <span className="relative z-10">Conheça</span>
+                      <span className="premium-cta__border" aria-hidden />
+                      <span className="premium-cta__sheen" aria-hidden />
+                    </motion.button>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-
-        <AnimatePresence>
-          {showEnter && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.8 }}
-              className="flex justify-center mt-12"
-            >
-              <button
-                onClick={onEnter}
-                className="group relative px-12 py-4 border border-aqua/40 text-foreground uppercase tracking-[0.3em] text-xs font-display hover:border-aqua transition-all duration-500 overflow-hidden"
-              >
-                <span className="relative z-10">Entrar</span>
-                <span className="absolute inset-0 bg-aqua/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   );

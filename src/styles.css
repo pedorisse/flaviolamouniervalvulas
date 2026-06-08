@@ -98,3 +98,54 @@
   0% { transform: translateY(0); }
   100% { transform: translateY(-20px); }
 }
+
+/* Premium CTA — slow blue glow tracing the border on hover */
+.premium-cta {
+  position: relative;
+  background: transparent;
+  isolation: isolate;
+  transition: color 600ms ease, letter-spacing 600ms ease;
+}
+.premium-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid oklch(0.72 0.16 235 / 0.35);
+  transition: border-color 600ms ease;
+  pointer-events: none;
+}
+.premium-cta:hover::before { border-color: oklch(0.78 0.2 230 / 0.85); }
+.premium-cta:hover { letter-spacing: 0.5em; }
+
+.premium-cta__border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, oklch(0.85 0.2 225 / 0.9), transparent) top/200% 1px no-repeat,
+    linear-gradient(90deg, transparent, oklch(0.85 0.2 225 / 0.9), transparent) bottom/200% 1px no-repeat,
+    linear-gradient(0deg, transparent, oklch(0.85 0.2 225 / 0.9), transparent) left/1px 200% no-repeat,
+    linear-gradient(0deg, transparent, oklch(0.85 0.2 225 / 0.9), transparent) right/1px 200% no-repeat;
+  background-position: -100% 0, 200% 100%, 0 200%, 100% -100%;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.premium-cta:hover .premium-cta__border {
+  opacity: 1;
+  animation: premium-trace 2.8s linear infinite;
+}
+@keyframes premium-trace {
+  0%   { background-position: -100% 0, 200% 100%, 0 200%, 100% -100%; }
+  100% { background-position: 200% 0, -100% 100%, 0 -100%, 100% 200%; }
+}
+
+.premium-cta__sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, oklch(0.78 0.2 230 / 0.18), transparent 70%);
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+.premium-cta:hover .premium-cta__sheen { opacity: 1; }
+
