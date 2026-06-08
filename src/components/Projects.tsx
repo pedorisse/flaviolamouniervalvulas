@@ -5,6 +5,8 @@ import santos from "@/assets/project-santos.jpg";
 import biolab from "@/assets/project-biolab.jpg";
 import guandu from "@/assets/project-guandu.jpg";
 import saoVideo from "@/assets/eta-saolourenco.mp4.asset.json";
+import santosVideo from "@/assets/travessia-santos.mp4.asset.json";
+import guanduVideo from "@/assets/eta-guandu.mp4.asset.json";
 
 type P = { n: string; title: string; loc: string; img: string; video?: string; headline: string; body: string; tags: string[] };
 
@@ -13,7 +15,7 @@ const projects: P[] = [
     headline: "Uma das maiores obras de saneamento da história do Brasil.",
     body: "Sistema produtor responsável pelo abastecimento de milhões de pessoas na região metropolitana de São Paulo. Infraestrutura crítica que opera 24 horas, todos os dias.",
     tags: ["Saneamento", "Captação", "Tratamento", "Distribuição"] },
-  { n: "02", title: "Travessia Subaquática Santos–Guarujá", loc: "Litoral · SP", img: santos,
+  { n: "02", title: "Travessia Subaquática Santos–Guarujá", loc: "Litoral · SP", img: santos, video: santosVideo.url,
     headline: "Tubulação PEAD atravessando o canal sob a água.",
     body: "Método não destrutivo aplicado em ambiente subaquático complexo. Engenharia de precisão para conectar duas cidades através de um dos canais mais movimentados do país.",
     tags: ["PEAD", "Subaquático", "Não destrutivo"] },
@@ -21,7 +23,7 @@ const projects: P[] = [
     headline: "Infraestrutura crítica para um ambiente farmacêutico.",
     body: "Aplicações industriais onde a confiabilidade operacional é não-negociável. Especificações técnicas para um setor que não admite paradas.",
     tags: ["Industrial", "Farmacêutico", "Crítico"] },
-  { n: "04", title: "ETA Guandu", loc: "Rio de Janeiro · RJ", img: guandu,
+  { n: "04", title: "ETA Guandu", loc: "Rio de Janeiro · RJ", img: guandu, video: guanduVideo.url,
     headline: "A maior estação de tratamento de água potável do mundo.",
     body: "Escala monumental. Volume de água tratado que abastece a quase totalidade da região metropolitana do Rio de Janeiro — uma das maiores operações hídricas do planeta.",
     tags: ["Mundial", "Tratamento", "Escala"] },
