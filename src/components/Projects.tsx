@@ -5,6 +5,8 @@ import santos from "@/assets/project-santos.jpg";
 import biolab from "@/assets/project-biolab.jpg";
 import guandu from "@/assets/project-guandu.jpg";
 import saoVideo from "@/assets/eta-saolourenco.mp4.asset.json";
+import santosVideo from "@/assets/travessia-santos.mp4.asset.json";
+import guanduVideo from "@/assets/eta-guandu.mp4.asset.json";
 
 type P = { n: string; title: string; loc: string; img: string; video?: string; headline: string; body: string; tags: string[] };
 
