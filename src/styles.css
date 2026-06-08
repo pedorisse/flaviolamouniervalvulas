@@ -84,6 +84,13 @@
     background: linear-gradient(to bottom, var(--aqua), transparent);
     margin: 12px auto 0;
   }
+  .loader-visible-copy {
+    color: var(--foreground);
+    text-shadow: 0 0 22px oklch(0.72 0.16 235 / 0.2);
+  }
+  .loader-fade-in {
+    animation: loader-fade-in 900ms ease-out both;
+  }
 }
 
 @keyframes flow {
@@ -97,6 +104,10 @@
 @keyframes drift {
   0% { transform: translateY(0); }
   100% { transform: translateY(-20px); }
+}
+@keyframes loader-fade-in {
+  0% { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Premium CTA — slow blue glow tracing the border on hover */
