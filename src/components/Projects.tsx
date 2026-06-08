@@ -4,11 +4,12 @@ import sao from "@/assets/project-saolourenco.jpg";
 import santos from "@/assets/project-santos.jpg";
 import biolab from "@/assets/project-biolab.jpg";
 import guandu from "@/assets/project-guandu.jpg";
+import saoVideo from "@/assets/eta-saolourenco.mp4.asset.json";
 
-type P = { n: string; title: string; loc: string; img: string; headline: string; body: string; tags: string[] };
+type P = { n: string; title: string; loc: string; img: string; video?: string; headline: string; body: string; tags: string[] };
 
 const projects: P[] = [
-  { n: "01", title: "ETA São Lourenço", loc: "São Paulo · SP", img: sao,
+  { n: "01", title: "ETA São Lourenço", loc: "São Paulo · SP", img: sao, video: saoVideo.url,
     headline: "Uma das maiores obras de saneamento da história do Brasil.",
     body: "Sistema produtor responsável pelo abastecimento de milhões de pessoas na região metropolitana de São Paulo. Infraestrutura crítica que opera 24 horas, todos os dias.",
     tags: ["Saneamento", "Captação", "Tratamento", "Distribuição"] },
@@ -38,7 +39,11 @@ function ProjectPanel({ p, idx }: { p: P; idx: number }) {
       <div className={`relative grid md:grid-cols-12 gap-8 md:gap-16 max-w-7xl mx-auto w-full items-center ${reverse ? "md:flex-row-reverse" : ""}`}>
         <motion.div style={{ y, opacity }} className={`md:col-span-7 relative ${reverse ? "md:order-2" : ""}`}>
           <div className="relative aspect-[16/10] overflow-hidden">
-            <img src={p.img} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+            {p.video ? (
+              <video src={p.video} className="w-full h-full object-cover" autoPlay muted loop playsInline preload="metadata" aria-label={p.title} />
+            ) : (
+              <img src={p.img} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+            )}
             <div className="absolute inset-0 bg-gradient-to-tr from-background/60 via-transparent to-transparent" />
             <div className="absolute top-6 left-6 font-display text-7xl md:text-9xl font-extralight text-foreground/90 mix-blend-overlay">{p.n}</div>
           </div>
