@@ -117,22 +117,31 @@ export function Knowledge() {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl bg-card border border-aqua/30"
+              className="relative flex flex-col items-center gap-4 max-w-[90vw]"
             >
-              <video src={open.src} controls autoPlay className="w-full aspect-video object-cover" />
-              <div className="p-6 flex items-center justify-between gap-6">
+              <div className="flex items-center justify-center bg-black border border-aqua/30 overflow-hidden">
+                <video
+                  src={open.src}
+                  controls
+                  autoPlay
+                  className="block object-contain"
+                  style={{ maxHeight: "85vh", maxWidth: "90vw" }}
+                />
+              </div>
+              <div className="w-full bg-card border border-border p-5 flex items-center justify-between gap-6">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.3em] text-aqua">{open.cat.join(" · ")}</div>
                   <div className="font-display text-xl mt-1">{open.title}</div>
                 </div>
                 <button
                   onClick={() => setOpen(null)}
-                  className="px-4 py-2 border border-border text-xs uppercase tracking-[0.3em] hover:border-aqua"
+                  className="px-4 py-2 border border-border text-xs uppercase tracking-[0.3em] hover:border-aqua shrink-0"
                 >
                   Fechar
                 </button>
               </div>
             </motion.div>
+
           </motion.div>
         )}
       </AnimatePresence>
