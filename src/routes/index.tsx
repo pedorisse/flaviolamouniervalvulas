@@ -31,7 +31,17 @@ function Index() {
 
   useEffect(() => {
     document.body.style.overflow = entered ? "auto" : "hidden";
+    return () => { document.body.style.overflow = "auto"; };
   }, [entered]);
+
+  useEffect(() => {
+    if (!loading) return;
+    const fallbackStart = window.setTimeout(() => {
+      setLoading(false);
+      setEntered(true);
+    }, 7600);
+    return () => window.clearTimeout(fallbackStart);
+  }, [loading]);
 
   return (
     <main className="bg-background text-foreground">

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 
 const phrases = [
@@ -33,14 +33,14 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
   );
 
   return (
-    <div className="fixed inset-0 z-[100] bg-deep grain overflow-hidden">
+    <div className="fixed inset-0 z-[100] bg-deep grain overflow-hidden" style={{ background: "radial-gradient(ellipse at top, #102845 0%, #02070d 70%)", color: "#f4fbff" }}>
       {/* Ambient radial glows */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
-        backgroundImage: "radial-gradient(circle at 20% 50%, oklch(0.55 0.18 230 / 0.15), transparent 50%), radial-gradient(circle at 80% 30%, oklch(0.72 0.16 235 / 0.1), transparent 50%)",
+      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none" style={{
+        backgroundImage: "radial-gradient(circle at 20% 50%, rgb(22 139 234 / 0.15), transparent 50%), radial-gradient(circle at 80% 30%, rgb(77 183 255 / 0.1), transparent 50%)",
       }} />
 
       {/* Ambient particles — "infrastructure is alive" */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 z-[1] pointer-events-none">
         {particles.map(p => (
           <motion.span
             key={p.id}
@@ -50,7 +50,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
               top: `${p.y}%`,
               width: p.size,
               height: p.size,
-              boxShadow: "0 0 6px oklch(0.78 0.2 230 / 0.6)",
+              boxShadow: "0 0 6px rgb(116 214 255 / 0.6)",
             }}
             animate={{ opacity: [0, 0.7, 0], y: [0, -20, -40] }}
             transition={{ duration: p.d, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
@@ -59,13 +59,13 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* TOP PIPELINE — continuous flowing light loop */}
-      <div className="absolute top-0 left-0 right-0 px-6 pt-6">
+      <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-6">
         <svg viewBox="0 0 1000 90" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="oklch(0.72 0.16 235)" stopOpacity="0" />
-              <stop offset="0.5" stopColor="oklch(0.85 0.2 225)" stopOpacity="1" />
-              <stop offset="1" stopColor="oklch(0.72 0.16 235)" stopOpacity="0" />
+              <stop offset="0" stopColor="#4db7ff" stopOpacity="0" />
+              <stop offset="0.5" stopColor="#a6ecff" stopOpacity="1" />
+              <stop offset="1" stopColor="#4db7ff" stopOpacity="0" />
             </linearGradient>
             <filter id="flowGlow">
               <feGaussianBlur stdDeviation="2" result="b"/>
@@ -73,10 +73,10 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
             </filter>
           </defs>
           {/* base pipe */}
-          <g stroke="oklch(1 0 0 / 0.12)" strokeWidth="1" fill="none">
+          <g stroke="rgb(244 251 255 / 0.12)" strokeWidth="1" fill="none">
             <path d="M0 40 L200 40 L240 20 L520 20 L560 60 L820 60 L860 40 L1000 40" />
             {[200,240,520,560,820,860].map((x,i)=>(
-              <circle key={i} cx={x} cy={i%2?20:40} r="3" fill="oklch(0.72 0.16 235 / 0.4)" stroke="none" />
+              <circle key={i} cx={x} cy={i%2?20:40} r="3" fill="rgb(77 183 255 / 0.4)" stroke="none" />
             ))}
           </g>
           {/* flowing light loop */}
@@ -94,33 +94,24 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
         </svg>
       </div>
 
-      {/* CENTER CONTENT — 40 / 20 / 40 distribution */}
-      <div className="absolute inset-0 flex items-center justify-center px-6">
-        <div className="w-full max-w-4xl flex flex-col items-center justify-center text-center">
-          <AnimatePresence mode="wait">
-            {phase < 2 && (
-              <motion.p
-                key={phase}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.9 }}
-                className="font-display text-xl md:text-3xl text-foreground/90 font-light tracking-wide text-balance"
-              >
-                {phrases[phase]}
-              </motion.p>
-            )}
-
-            {phase === 2 && (
-              <motion.div
+      {/* CENTER CONTENT — stable visible fallback, animations are decorative only */}
+      <div className="absolute inset-0 z-20 flex items-center justify-center px-6">
+        <div className="relative w-full max-w-4xl flex flex-col items-center justify-center text-center" style={{ color: "#f4fbff" }}>
+          {phase < 2 ? (
+            <p
+              key={phase}
+              style={{ color: "#f4fbff" }}
+              className="loader-visible-copy loader-fade-in font-display text-xl md:text-3xl font-light tracking-wide text-balance"
+            >
+              {phrases[phase]}
+            </p>
+          ) : (
+              <div
                 key="name"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="flex flex-col items-center gap-8 w-full"
+                className="loader-fade-in flex flex-col items-center gap-8 w-full"
               >
                 <div className="space-y-4">
-                  <h1 className="font-display text-6xl md:text-8xl font-extralight tracking-[0.3em] text-foreground">
+                  <h1 style={{ color: "#f4fbff" }} className="loader-visible-copy font-display text-5xl min-[390px]:text-6xl md:text-8xl font-extralight tracking-[0.22em] md:tracking-[0.3em]">
                     FLÁVIO
                   </h1>
 
@@ -129,15 +120,15 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                     <svg viewBox="0 0 520 40" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
                       <defs>
                         <linearGradient id="fluidFade" x1="0" y1="0" x2="1" y2="0">
-                          <stop offset="0" stopColor="oklch(0.78 0.2 230)" stopOpacity="0" />
-                          <stop offset="0.5" stopColor="oklch(0.78 0.2 230)" stopOpacity="0.55" />
-                          <stop offset="1" stopColor="oklch(0.78 0.2 230)" stopOpacity="0" />
+                          <stop offset="0" stopColor="#74d6ff" stopOpacity="0" />
+                          <stop offset="0.5" stopColor="#74d6ff" stopOpacity="0.55" />
+                          <stop offset="1" stopColor="#74d6ff" stopOpacity="0" />
                         </linearGradient>
                         <mask id="fluidMask">
                           <rect width="520" height="40" fill="url(#fluidFade)" />
                         </mask>
                       </defs>
-                      <g mask="url(#fluidMask)" stroke="oklch(0.78 0.2 230)" fill="none" strokeWidth="0.7">
+                      <g mask="url(#fluidMask)" stroke="#74d6ff" fill="none" strokeWidth="0.7">
                         {[8, 14, 20, 26, 32].map((y, i) => (
                           <motion.path
                             key={i}
@@ -156,30 +147,24 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                     </svg>
                   </div>
 
-                  <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">
+                  <p style={{ color: "#74d6ff" }} className="text-xs md:text-sm uppercase tracking-[0.28em] md:tracking-[0.4em] leading-relaxed">
                     Especialista em Válvulas Industriais &amp; Tubulações PEAD
                   </p>
                 </div>
 
-                <AnimatePresence>
-                  {showEnter && (
-                    <motion.button
-                      onClick={onEnter}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.8 }}
-                      className="premium-cta group relative px-14 py-4 text-foreground uppercase tracking-[0.45em] text-xs font-display"
-                    >
-                      <span className="relative z-10">Conheça</span>
-                      <span className="premium-cta__border" aria-hidden />
-                      <span className="premium-cta__sheen" aria-hidden />
-                    </motion.button>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                {showEnter && (
+                  <button
+                    onClick={onEnter}
+                    style={{ color: "#f4fbff" }}
+                    className="loader-fade-in premium-cta group relative px-14 py-4 text-foreground uppercase tracking-[0.38em] md:tracking-[0.45em] text-xs font-display"
+                  >
+                    <span className="relative z-10">Conheça</span>
+                    <span className="premium-cta__border" aria-hidden />
+                    <span className="premium-cta__sheen" aria-hidden />
+                  </button>
+                )}
+              </div>
             )}
-          </AnimatePresence>
         </div>
       </div>
     </div>
