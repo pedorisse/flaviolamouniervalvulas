@@ -7,7 +7,7 @@ import { About } from "@/components/About";
 import { Solutions } from "@/components/Solutions";
 import { Projects } from "@/components/Projects";
 import { ExperienceAreas } from "@/components/ExperienceAreas";
-import { Gallery } from "@/components/Gallery";
+
 import { Knowledge } from "@/components/Knowledge";
 import { ValveScroll } from "@/components/ValveScroll";
 import { Partners } from "@/components/Partners";
@@ -59,7 +59,7 @@ function Index() {
           <Solutions />
           <Projects />
           <ExperienceAreas />
-          <Gallery />
+          
           <Knowledge />
           <ValveScroll />
           <Partners />
