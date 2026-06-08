@@ -33,14 +33,14 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
   );
 
   return (
-    <div className="fixed inset-0 z-[100] bg-deep grain overflow-hidden">
+    <div className="fixed inset-0 z-[100] bg-deep grain overflow-hidden" style={{ background: "radial-gradient(ellipse at top, #102845 0%, #02070d 70%)", color: "#f4fbff" }}>
       {/* Ambient radial glows */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
+      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none" style={{
         backgroundImage: "radial-gradient(circle at 20% 50%, rgb(22 139 234 / 0.15), transparent 50%), radial-gradient(circle at 80% 30%, rgb(77 183 255 / 0.1), transparent 50%)",
       }} />
 
       {/* Ambient particles — "infrastructure is alive" */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 z-[1] pointer-events-none">
         {particles.map(p => (
           <motion.span
             key={p.id}
@@ -59,7 +59,7 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* TOP PIPELINE — continuous flowing light loop */}
-      <div className="absolute top-0 left-0 right-0 px-6 pt-6">
+      <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-6">
         <svg viewBox="0 0 1000 90" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="0">
@@ -95,8 +95,8 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
       </div>
 
       {/* CENTER CONTENT — stable visible fallback, animations are decorative only */}
-      <div className="absolute inset-0 flex items-center justify-center px-6">
-        <div className="w-full max-w-4xl flex flex-col items-center justify-center text-center">
+      <div className="absolute inset-0 z-20 flex items-center justify-center px-6">
+        <div className="relative w-full max-w-4xl flex flex-col items-center justify-center text-center" style={{ color: "#f4fbff" }}>
           {phase < 2 ? (
             <p
               key={phase}
