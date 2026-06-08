@@ -87,8 +87,8 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className="space-y-3"
               >
-                <h1 className="font-display text-6xl md:text-8xl font-extralight tracking-[0.3em] text-foreground">FLÁVIO</h1>
-                <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">Especialista em Válvulas Industriais & Tubulações PEAD</p>
+                <h1 className="font-display text-6xl md:text-8xl font-extralight tracking-[0.3em] text-foreground">FLÁVIO LAMOUNIER</h1>
+                <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">Consultor de Negócios · Válvulas Industriais & Tubulações PEAD</p>
               </motion.div>
             )}
           </AnimatePresence>
