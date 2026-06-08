@@ -15,7 +15,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Flávio · Especialista em Válvulas Industriais e Tubulações PEAD" },
+      { title: "Flávio Lamounier · Consultor de Negócios em Válvulas Industriais e Tubulações PEAD" },
       { name: "description", content: "Portfólio digital de autoridade. Participação em grandes projetos de saneamento, infraestrutura e indústria no Brasil — ETA São Lourenço, Travessia Santos–Guarujá, Biolab, ETA Guandu." },
       { property: "og:title", content: "Flávio · Portfólio de Engenharia & Infraestrutura" },
       { property: "og:description", content: "Por trás de grandes obras, existem grandes decisões. Conheça a trajetória." },

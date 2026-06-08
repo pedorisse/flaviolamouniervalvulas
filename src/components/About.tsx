@@ -1,6 +1,7 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from "motion/react";
 import { useEffect, useRef } from "react";
-import portrait from "@/assets/flavio-portrait.jpg";
+import portraitAsset from "@/assets/flavio-portrait.jpg.asset.json";
+const portrait = portraitAsset.url;
 
 function Counter({ value, suffix = "+" }: { value: number; suffix?: string }) {
   const mv = useMotionValue(0);
@@ -33,8 +34,8 @@ export function About() {
             <img src={portrait} alt="Flávio" className="w-full h-full object-cover grayscale contrast-110" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 border-l-2 border-aqua">
-              <div className="text-aqua text-[10px] uppercase tracking-[0.4em] mb-1">Especialista</div>
-              <div className="font-display text-2xl">Flávio</div>
+              <div className="text-aqua text-[10px] uppercase tracking-[0.4em] mb-1">Consultor de Negócios</div>
+              <div className="font-display text-2xl">Flávio Lamounier</div>
             </div>
           </div>
           <div className="absolute -top-4 -right-4 w-32 h-32 border border-aqua/30 -z-10" />
