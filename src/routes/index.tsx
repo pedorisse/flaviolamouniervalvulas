@@ -60,7 +60,6 @@ function Index() {
           
           
           <Knowledge />
-          <ValveScroll />
           <Partners />
           <FinalCTA />
         </motion.div>
