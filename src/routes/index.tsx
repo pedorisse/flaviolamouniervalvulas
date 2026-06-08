@@ -9,7 +9,6 @@ import { Projects } from "@/components/Projects";
 
 
 import { Knowledge } from "@/components/Knowledge";
-import { ValveScroll } from "@/components/ValveScroll";
 import { Partners } from "@/components/Partners";
 import { FinalCTA } from "@/components/FinalCTA";
 
