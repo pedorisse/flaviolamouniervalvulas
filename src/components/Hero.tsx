@@ -46,7 +46,7 @@ export function Hero() {
             As soluções por trás das <span className="text-aqua italic font-thin">maiores obras de infraestrutura</span> do Brasil.
           </h1>
           <p className="text-base md:text-lg text-white/85 max-w-2xl font-light leading-relaxed drop-shadow-[0_1px_10px_rgba(0,0,0,0.6)]">
-            Especialista em válvulas industriais e tubulações PEAD aplicadas em sistemas de saneamento, indústria e grandes projetos de engenharia.
+            Especialista em válvulas industriais aplicadas em saneamento, ETA, ETE e sistemas críticos de controle de fluxo.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
             <a href="#projetos" className="group relative px-10 py-4 bg-aqua text-primary-foreground uppercase tracking-[0.25em] text-xs font-medium overflow-hidden">
