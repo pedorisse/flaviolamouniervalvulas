@@ -4,10 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
-import { Solutions } from "@/components/Solutions";
 import { Projects } from "@/components/Projects";
-
-
 import { Knowledge } from "@/components/Knowledge";
 import { Partners } from "@/components/Partners";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -15,10 +12,10 @@ import { FinalCTA } from "@/components/FinalCTA";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Flávio Lamounier · Consultor de Negócios em Válvulas Industriais e Tubulações PEAD" },
-      { name: "description", content: "Portfólio digital de autoridade. Participação em grandes projetos de saneamento, infraestrutura e indústria no Brasil — ETA São Lourenço, Travessia Santos–Guarujá, Biolab, ETA Guandu." },
-      { property: "og:title", content: "Flávio · Portfólio de Engenharia & Infraestrutura" },
-      { property: "og:description", content: "Por trás de grandes obras, existem grandes decisões. Conheça a trajetória." },
+      { title: "Flávio Lamounier · Especialista em Válvulas Industriais" },
+      { name: "description", content: "Especialista em válvulas industriais aplicadas em saneamento, ETA, ETE e sistemas críticos de controle de fluxo. Trajetória em grandes obras como ETA São Lourenço e ETA Guandu." },
+      { property: "og:title", content: "Flávio Lamounier · Válvulas Industriais para Sistemas Críticos" },
+      { property: "og:description", content: "Autoridade em válvulas industriais para saneamento, ETA, ETE e controle de fluxo." },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -55,10 +52,7 @@ function Index() {
         >
           <Hero />
           <About />
-          <Solutions />
           <Projects />
-          
-          
           <Knowledge />
           <Partners />
           <FinalCTA />

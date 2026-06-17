@@ -14,14 +14,14 @@ export function FinalCTA() {
           transition={{ duration: 1.2 }} viewport={{ once: true }}
           className="font-display text-4xl md:text-6xl lg:text-7xl font-extralight leading-tight text-balance drop-shadow-lg"
         >
-          A próxima grande obra pode começar com uma conversa.
+          A solução certa começa com a especificação correta.
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
           transition={{ duration: 1.5, delay: 0.8 }} viewport={{ once: true }}
           className="font-body text-lg md:text-2xl text-foreground/90 font-light text-balance max-w-3xl leading-relaxed drop-shadow"
         >
-          Vamos discutir a melhor solução para seu projeto, aplicação industrial, sistema de saneamento ou infraestrutura hídrica.
+          Válvulas industriais para saneamento, ETA, ETE e aplicações críticas. Vamos discutir a solução mais adequada para o seu projeto.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}

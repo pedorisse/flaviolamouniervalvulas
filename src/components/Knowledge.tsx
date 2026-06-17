@@ -8,23 +8,16 @@ import heli from "@/assets/helicopter.mp4.asset.json";
 const filters = [
   "Todos",
   "Válvulas Industriais",
-  "Tubulações PEAD",
-  "Visitas Técnicas",
-  "Obras",
   "Saneamento",
-  "Indústria",
 ] as const;
 type F = typeof filters[number];
 
 const items: { id: number; title: string; subtitle: string; cat: F[]; src: string }[] = [
-  { id: 1, title: "Funcionamento de válvulas borboleta", subtitle: "Princípio mecânico", cat: ["Válvulas Industriais", "Indústria"], src: valve.url },
-  { id: 2, title: "Aplicação de PEAD em saneamento", subtitle: "Campo e especificação", cat: ["Tubulações PEAD", "Saneamento"], src: presenter.url },
-  { id: 3, title: "Obras de grande porte", subtitle: "Escala e logística", cat: ["Obras", "Saneamento"], src: drone.url },
-  { id: 4, title: "Usinas e infraestrutura", subtitle: "Operação crítica", cat: ["Obras", "Indústria"], src: heli.url },
-  { id: 5, title: "Casos reais de instalação", subtitle: "Visitas técnicas", cat: ["Visitas Técnicas", "Válvulas Industriais"], src: presenter.url },
-  { id: 6, title: "Inspeção em válvula DN200", subtitle: "Visita técnica", cat: ["Visitas Técnicas", "Válvulas Industriais", "Indústria"], src: valve.url },
-  { id: 7, title: "Drone · obra de saneamento", subtitle: "Aérea técnica", cat: ["Obras", "Saneamento"], src: drone.url },
-  { id: 8, title: "Visita técnica · tubulação PEAD", subtitle: "Acompanhamento", cat: ["Visitas Técnicas", "Tubulações PEAD"], src: presenter.url },
+  { id: 1, title: "Funcionamento de válvulas borboleta", subtitle: "Princípios mecânicos aplicados em sistemas de controle de fluxo", cat: ["Válvulas Industriais"], src: valve.url },
+  { id: 2, title: "ETA e ETE na prática", subtitle: "Aplicações em sistemas de abastecimento e tratamento", cat: ["Saneamento", "Válvulas Industriais"], src: drone.url },
+  { id: 3, title: "Visitas técnicas e operação em campo", subtitle: "Experiência prática em estações de tratamento e grandes sistemas", cat: ["Saneamento", "Válvulas Industriais"], src: presenter.url },
+  { id: 4, title: "Controle e bloqueio de fluxo", subtitle: "Aplicações críticas em saneamento e processos industriais", cat: ["Válvulas Industriais", "Saneamento"], src: valve.url },
+  { id: 5, title: "Especificação para sistemas críticos", subtitle: "Critérios técnicos para seleção e desempenho operacional", cat: ["Válvulas Industriais"], src: heli.url },
 ];
 
 export function Knowledge() {
