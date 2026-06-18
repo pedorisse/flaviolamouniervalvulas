@@ -88,7 +88,10 @@ export function LoadingScreen({ onEnter }: { onEnter: () => void }) {
                 className="space-y-3"
               >
                 <h1 className="font-display text-6xl md:text-8xl font-extralight tracking-[0.3em] text-foreground">FLÁVIO LAMOUNIER</h1>
-                <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">Consultor de Negócios · Válvulas Industriais</p>
+                <div className="flex flex-col items-center gap-1">
+                  <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">Consultor de Grandes Negócios</p>
+                  <p className="text-xs md:text-sm text-aqua uppercase tracking-[0.4em]">Válvulas Industriais</p>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
