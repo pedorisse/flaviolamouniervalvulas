@@ -34,7 +34,7 @@ export function About() {
             <img src={portrait} alt="Flávio Lamounier" className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 border-l-2 border-aqua">
-              <div className="text-aqua text-[10px] uppercase tracking-[0.4em] mb-1">Consultor de Negócios</div>
+              <div className="text-aqua text-[9px] md:text-[10px] uppercase tracking-[0.3em] mb-1">Consultor de Grandes Negócios</div>
               <div className="font-display text-2xl">Flávio Lamounier</div>
             </div>
           </div>
