@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import drone from "@/assets/site-hero.mp4.asset.json";
+import drone from "@/assets/hero-site.mp4.asset.json";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
