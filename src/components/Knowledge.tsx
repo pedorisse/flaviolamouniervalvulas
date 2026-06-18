@@ -3,7 +3,6 @@ import { useState } from "react";
 import valve from "@/assets/valve-borboleta.mp4.asset.json";
 import presenter from "@/assets/presenter.mp4.asset.json";
 import drone from "@/assets/drone.mp4.asset.json";
-import caseVideo from "@/assets/eta-saolourenco-case.mp4.asset.json";
 
 
 const filters = [
@@ -13,10 +12,10 @@ const filters = [
 ] as const;
 type F = typeof filters[number];
 
-const items: { id: number; title: string; subtitle: string; cat: F[]; thumb: string }[] = [
-  { id: 1, title: "Funcionamento de válvulas borboleta", subtitle: "Princípios mecânicos aplicados em sistemas de controle de fluxo", cat: ["Válvulas Industriais"], thumb: valve.url },
-  { id: 2, title: "ETA e ETE na prática", subtitle: "Aplicações em sistemas de abastecimento e tratamento", cat: ["Saneamento", "Válvulas Industriais"], thumb: drone.url },
-  { id: 3, title: "Visitas técnicas e operação em campo", subtitle: "Experiência prática em estações de tratamento e grandes sistemas", cat: ["Saneamento", "Válvulas Industriais"], thumb: presenter.url },
+const items: { id: number; title: string; subtitle: string; cat: F[]; src: string }[] = [
+  { id: 1, title: "Funcionamento de válvulas borboleta", subtitle: "Princípios mecânicos aplicados em sistemas de controle de fluxo", cat: ["Válvulas Industriais"], src: valve.url },
+  { id: 2, title: "ETA e ETE na prática", subtitle: "Aplicações em sistemas de abastecimento e tratamento", cat: ["Saneamento", "Válvulas Industriais"], src: drone.url },
+  { id: 3, title: "Visitas técnicas e operação em campo", subtitle: "Experiência prática em estações de tratamento e grandes sistemas", cat: ["Saneamento", "Válvulas Industriais"], src: presenter.url },
 ];
 
 export function Knowledge() {
@@ -63,41 +62,21 @@ export function Knowledge() {
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.5, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => setOpen(it)}
-                className="group relative aspect-[4/5] overflow-hidden bg-card border border-border hover:border-aqua/60 transition-colors text-left cursor-pointer"
+                className="group relative aspect-[4/5] overflow-hidden bg-card border border-border hover:border-aqua/60 transition-colors text-left"
               >
-                {/* Thumbnail (first frame only, no autoplay) */}
                 <video
-                  src={`${it.thumb}#t=0.5`}
+                  src={it.src}
                   muted
                   playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+                  loop
+                  autoPlay
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700"
                 />
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-background/55" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-
-                {/* Center play button + CTA */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center pointer-events-none">
-                  <div className="relative">
-                    <span className="absolute inset-0 rounded-full border border-aqua/60 animate-ping" />
-                    <span className="absolute inset-0 rounded-full bg-aqua/20 animate-pulse" />
-                    <div className="relative w-16 h-16 rounded-full border border-aqua bg-background/40 backdrop-blur flex items-center justify-center text-aqua text-xl transition-all duration-300 group-hover:bg-aqua/20 group-hover:shadow-[0_0_30px_rgba(0,200,200,0.5)]">
-                      <span className="ml-1">▶</span>
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="text-[11px] uppercase tracking-[0.4em] text-foreground font-light">
-                      Clique e descubra
-                    </div>
-                    <div className="text-[9px] uppercase tracking-[0.35em] text-aqua/80">
-                      Case em vídeo
-                    </div>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                <div className="absolute top-4 right-4 w-12 h-12 border border-aqua/60 flex items-center justify-center text-aqua bg-background/30 backdrop-blur opacity-0 group-hover:opacity-100 transition-opacity">
+                  ▶
                 </div>
-
-                {/* Bottom meta */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2 pointer-events-none">
+                <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2">
                   <div className="text-[10px] uppercase tracking-[0.3em] text-aqua">{it.subtitle}</div>
                   <div className="font-display text-xl md:text-2xl font-extralight leading-tight">{it.title}</div>
                   <div className="flex flex-wrap gap-1.5 pt-2">
@@ -133,7 +112,7 @@ export function Knowledge() {
             >
               <div className="flex items-center justify-center bg-black border border-aqua/30 overflow-hidden">
                 <video
-                  src={caseVideo.url}
+                  src={open.src}
                   controls
                   autoPlay
                   className="block object-contain"
