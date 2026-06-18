@@ -1,6 +1,6 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from "motion/react";
 import { useEffect, useRef } from "react";
-import portraitAsset from "@/assets/flavio-portrait.jpg.asset.json";
+import portraitAsset from "@/assets/flavio-portrait-studio.jpg.asset.json";
 const portrait = portraitAsset.url;
 
 function Counter({ value, suffix = "+" }: { value: number; suffix?: string }) {
