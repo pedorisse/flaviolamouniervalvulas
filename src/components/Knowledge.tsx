@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import valve from "@/assets/valve.mp4.asset.json";
+import valve from "@/assets/valve-borboleta.mp4.asset.json";
 import presenter from "@/assets/presenter.mp4.asset.json";
 import drone from "@/assets/drone.mp4.asset.json";
 import heli from "@/assets/helicopter.mp4.asset.json";
