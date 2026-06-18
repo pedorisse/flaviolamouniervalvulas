@@ -3,7 +3,7 @@ import { useState } from "react";
 import valve from "@/assets/valve-borboleta.mp4.asset.json";
 import presenter from "@/assets/presenter.mp4.asset.json";
 import drone from "@/assets/drone.mp4.asset.json";
-import heli from "@/assets/helicopter.mp4.asset.json";
+
 
 const filters = [
   "Todos",
