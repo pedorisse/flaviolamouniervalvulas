@@ -79,15 +79,6 @@ function ProjectPanel({ p, idx, onOpenDemo }: { p: P; idx: number; onOpenDemo: (
                   </span>
                 </div>
 
-                {/* Floating premium button */}
-                <div className="absolute bottom-5 right-5 md:bottom-6 md:right-6 pointer-events-none">
-                  <div
-                    className="flex items-center gap-2.5 px-4 py-2.5 md:px-5 md:py-3 bg-black/55 backdrop-blur-xl border border-white/25 rounded-full text-white text-[10px] md:text-[11px] uppercase tracking-[0.28em] font-light shadow-[0_0_24px_rgba(34,211,238,0.35)] transition-transform duration-300 group-hover:scale-[1.06]"
-                  >
-                    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-aqua/20 border border-aqua/40 text-aqua text-[9px]">▶</span>
-                    Ver demonstração
-                  </div>
-                </div>
               </>
             )}
           </div>
