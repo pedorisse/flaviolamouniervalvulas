@@ -16,8 +16,6 @@ const items: { id: number; title: string; subtitle: string; cat: F[]; src: strin
   { id: 1, title: "Funcionamento de válvulas borboleta", subtitle: "Princípios mecânicos aplicados em sistemas de controle de fluxo", cat: ["Válvulas Industriais"], src: valve.url },
   { id: 2, title: "ETA e ETE na prática", subtitle: "Aplicações em sistemas de abastecimento e tratamento", cat: ["Saneamento", "Válvulas Industriais"], src: drone.url },
   { id: 3, title: "Visitas técnicas e operação em campo", subtitle: "Experiência prática em estações de tratamento e grandes sistemas", cat: ["Saneamento", "Válvulas Industriais"], src: presenter.url },
-  { id: 4, title: "Controle e bloqueio de fluxo", subtitle: "Aplicações críticas em saneamento e processos industriais", cat: ["Válvulas Industriais", "Saneamento"], src: valve.url },
-  { id: 5, title: "Especificação para sistemas críticos", subtitle: "Critérios técnicos para seleção e desempenho operacional", cat: ["Válvulas Industriais"], src: heli.url },
 ];
 
 export function Knowledge() {
