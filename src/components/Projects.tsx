@@ -5,6 +5,7 @@ import guandu from "@/assets/project-guandu.jpg";
 import saoVideo from "@/assets/eta-saolourenco.mp4.asset.json";
 import guanduVideo from "@/assets/eta-guandu.mp4.asset.json";
 import saoDemo from "@/assets/eta-saolourenco-final.mp4.asset.json";
+import guanduDemo from "@/assets/eta-guandu-demo.mp4.asset.json";
 
 type P = {
   n: string;
