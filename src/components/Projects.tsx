@@ -5,6 +5,7 @@ import guandu from "@/assets/project-guandu.jpg";
 import saoVideo from "@/assets/eta-saolourenco.mp4.asset.json";
 import guanduVideo from "@/assets/eta-guandu.mp4.asset.json";
 import saoDemo from "@/assets/eta-saolourenco-final.mp4.asset.json";
+import guanduDemo from "@/assets/eta-guandu-demo.mp4.asset.json";
 
 type P = {
   n: string;
@@ -23,7 +24,7 @@ const projects: P[] = [
     headline: "Uma das maiores obras de saneamento da história do Brasil.",
     body: "Sistema produtor responsável pelo abastecimento de milhões de pessoas na região metropolitana de São Paulo. Infraestrutura crítica operando continuamente.",
     tags: ["Saneamento", "Captação", "Tratamento", "Distribuição"] },
-  { n: "02", title: "ETA Guandu", loc: "Rio de Janeiro · RJ", img: guandu, video: guanduVideo.url,
+  { n: "02", title: "ETA Guandu", loc: "Rio de Janeiro · RJ", img: guandu, video: guanduVideo.url, demoVideo: guanduDemo.url,
     headline: "A maior estação de tratamento de água potável do mundo.",
     body: "Escala monumental e controle operacional em um dos sistemas hídricos mais importantes do planeta.",
     tags: ["Tratamento", "Escala", "Confiabilidade"] },
