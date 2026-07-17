@@ -13,10 +13,10 @@ function Counter({ value, suffix = "+" }: { value: number; suffix?: string }) {
 }
 
 const stats = [
-  { v: 40, l: "Projetos Estratégicos" },
-  { v: 25, l: "Obras de Infraestrutura" },
-  { v: 60, l: "Sistemas de Saneamento" },
-  { v: 120, l: "Aplicações Industriais" },
+  { v: 20, l: ["PROJETOS", "ESTRATÉGICOS"], suffix: "+" },
+  { v: 25, l: ["GRANDES OBRAS DE", "INFRAESTRUTURA"], suffix: "+" },
+  { v: 50000, l: ["VÁLVULAS DE SANEAMENTO", "VENDIDAS"], suffix: "+" },
+  { v: "LÍDER", l: ["NAS MAIORES COMPANHIAS", "DE SANEAMENTO"] },
 ];
 
 export function About() {
