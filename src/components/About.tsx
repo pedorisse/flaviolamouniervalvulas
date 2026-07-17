@@ -13,10 +13,10 @@ function Counter({ value, suffix = "+" }: { value: number; suffix?: string }) {
 }
 
 const stats = [
-  { v: 40, l: "Projetos Estratégicos" },
-  { v: 25, l: "Obras de Infraestrutura" },
-  { v: 60, l: "Sistemas de Saneamento" },
-  { v: 120, l: "Aplicações Industriais" },
+  { v: 20, l: ["PROJETOS", "ESTRATÉGICOS"], suffix: "+" },
+  { v: 25, l: ["GRANDES OBRAS DE", "INFRAESTRUTURA"], suffix: "+" },
+  { v: 50000, l: ["VÁLVULAS DE SANEAMENTO", "VENDIDAS"], suffix: "+" },
+  { v: "LÍDER", l: ["NAS MAIORES COMPANHIAS", "DE SANEAMENTO"] },
 ];
 
 export function About() {
@@ -73,9 +73,13 @@ export function About() {
                 className="bg-background p-6 md:p-8"
               >
                 <div className="font-display text-4xl md:text-5xl font-extralight text-aqua">
-                  <Counter value={s.v} />
+                  {typeof s.v === "string" ? s.v : <Counter value={s.v} suffix={s.suffix} />}
                 </div>
-                <div className="text-xs uppercase tracking-[0.2em] text-foreground/60 mt-2">{s.l}</div>
+                <div className="text-xs uppercase tracking-[0.2em] text-foreground/60 mt-2 leading-snug">
+                  {s.l.map((line, idx) => (
+                    <span key={idx}>{line}{idx < s.l.length - 1 && <br />}</span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
