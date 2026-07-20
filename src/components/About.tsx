@@ -7,7 +7,7 @@ function Counter({ value, suffix = "+" }: { value: number; suffix?: string }) {
   const mv = useMotionValue(0);
   const rounded = useTransform(mv, (v) => Math.round(v).toLocaleString("pt-BR") + suffix);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-100px 0px" });
   useEffect(() => { if (inView) animate(mv, value, { duration: 2.2, ease: "easeOut" }); }, [inView, value, mv]);
   return <motion.span ref={ref}>{rounded}</motion.span>;
 }
