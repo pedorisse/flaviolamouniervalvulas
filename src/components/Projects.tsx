@@ -4,8 +4,6 @@ import sao from "@/assets/project-saolourenco.jpg";
 import guandu from "@/assets/project-guandu.jpg";
 import saoVideo from "@/assets/eta-saolourenco.mp4.asset.json";
 import guanduVideo from "@/assets/eta-guandu.mp4.asset.json";
-import saoDemo from "@/assets/eta-saolourenco-final.mp4.asset.json";
-import guanduDemo from "@/assets/eta-guandu-demo.mp4.asset.json";
 
 type P = {
   n: string;
@@ -13,30 +11,30 @@ type P = {
   loc: string;
   img: string;
   video?: string;
-  demoVideo?: string;
+  demoVimeoId?: string;
   headline: string;
   body: string;
   tags: string[];
 };
 
 const projects: P[] = [
-  { n: "01", title: "ETA São Lourenço", loc: "São Paulo · SP", img: sao, video: saoVideo.url, demoVideo: saoDemo.url,
+  { n: "01", title: "ETA São Lourenço", loc: "São Paulo · SP", img: sao, video: saoVideo.url, demoVimeoId: "1211509853",
     headline: "Uma das maiores obras de saneamento da história do Brasil.",
     body: "Sistema produtor responsável pelo abastecimento de milhões de pessoas na região metropolitana de São Paulo. Infraestrutura crítica operando continuamente.",
     tags: ["Saneamento", "Captação", "Tratamento", "Distribuição"] },
-  { n: "02", title: "ETA Guandu", loc: "Rio de Janeiro · RJ", img: guandu, video: guanduVideo.url, demoVideo: guanduDemo.url,
+  { n: "02", title: "ETA Guandu", loc: "Rio de Janeiro · RJ", img: guandu, video: guanduVideo.url, demoVimeoId: "1211510047",
     headline: "A maior estação de tratamento de água potável do mundo.",
     body: "Escala monumental e controle operacional em um dos sistemas hídricos mais importantes do planeta.",
     tags: ["Tratamento", "Escala", "Confiabilidade"] },
 ];
 
-function ProjectPanel({ p, idx, onOpenDemo }: { p: P; idx: number; onOpenDemo: (src: string, title: string) => void }) {
+function ProjectPanel({ p, idx, onOpenDemo }: { p: P; idx: number; onOpenDemo: (vimeoId: string, title: string) => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.3, 1, 1, 0.3]);
   const reverse = idx % 2 === 1;
-  const hasDemo = !!p.demoVideo;
+  const hasDemo = !!p.demoVimeoId;
 
   return (
     <div ref={ref} className="relative min-h-screen flex items-center py-24 px-6 md:px-16 overflow-hidden">
@@ -44,10 +42,10 @@ function ProjectPanel({ p, idx, onOpenDemo }: { p: P; idx: number; onOpenDemo: (
         <motion.div style={{ y, opacity }} className={`md:col-span-8 relative ${reverse ? "md:order-2" : ""}`}>
           <div
             className={`relative aspect-[16/10] overflow-hidden group ${hasDemo ? "cursor-pointer" : ""}`}
-            onClick={hasDemo ? () => onOpenDemo(p.demoVideo!, p.title) : undefined}
+            onClick={hasDemo ? () => onOpenDemo(p.demoVimeoId!, p.title) : undefined}
             role={hasDemo ? "button" : undefined}
             tabIndex={hasDemo ? 0 : undefined}
-            onKeyDown={hasDemo ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenDemo(p.demoVideo!, p.title); } } : undefined}
+            onKeyDown={hasDemo ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpenDemo(p.demoVimeoId!, p.title); } } : undefined}
             aria-label={hasDemo ? `Ver demonstração de ${p.title}` : undefined}
           >
             {p.video ? (
@@ -68,19 +66,15 @@ function ProjectPanel({ p, idx, onOpenDemo }: { p: P; idx: number; onOpenDemo: (
             <div className="absolute top-6 left-6 font-display text-7xl md:text-9xl font-extralight text-foreground/90 mix-blend-overlay pointer-events-none">{p.n}</div>
 
             {hasDemo && (
-              <>
-                {/* Pulsing center play icon */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <span className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24">
-                    <span className="absolute inset-0 rounded-full bg-aqua/20 animate-ping" />
-                    <span className="absolute inset-2 rounded-full bg-background/40 backdrop-blur-sm border border-white/30" />
-                    <svg viewBox="0 0 24 24" className="relative w-8 h-8 md:w-10 md:h-10 text-white drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
-                </div>
-
-              </>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span className="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24">
+                  <span className="absolute inset-0 rounded-full bg-aqua/20 animate-ping" />
+                  <span className="absolute inset-2 rounded-full bg-background/40 backdrop-blur-sm border border-white/30" />
+                  <svg viewBox="0 0 24 24" className="relative w-8 h-8 md:w-10 md:h-10 text-white drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </div>
             )}
           </div>
         </motion.div>
@@ -111,8 +105,7 @@ function ProjectPanel({ p, idx, onOpenDemo }: { p: P; idx: number; onOpenDemo: (
 }
 
 export function Projects() {
-  const [demo, setDemo] = useState<{ src: string; title: string } | null>(null);
-  const [isVertical, setIsVertical] = useState(false);
+  const [demo, setDemo] = useState<{ vimeoId: string; title: string } | null>(null);
 
   return (
     <section id="projetos" className="relative bg-deep grain">
@@ -133,7 +126,7 @@ export function Projects() {
         </motion.div>
       </div>
       {projects.map((p, i) => (
-        <ProjectPanel key={p.n} p={p} idx={i} onOpenDemo={(src, title) => { setIsVertical(false); setDemo({ src, title }); }} />
+        <ProjectPanel key={p.n} p={p} idx={i} onOpenDemo={(vimeoId, title) => setDemo({ vimeoId, title })} />
       ))}
 
       <AnimatePresence>
@@ -151,23 +144,19 @@ export function Projects() {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex flex-col items-center gap-4 max-w-[95vw]"
+              className="relative flex flex-col items-center gap-4 w-full max-w-[1200px]"
             >
-              <div className="flex items-center justify-center bg-black border border-aqua/30 overflow-hidden">
-                <video
-                  src={demo.src}
-                  controls
-                  autoPlay
-                  onLoadedMetadata={(e) => {
-                    const v = e.currentTarget;
-                    setIsVertical(v.videoHeight > v.videoWidth);
-                  }}
-                  className="block object-contain"
-                  style={
-                    isVertical
-                      ? { maxHeight: "85vh", maxWidth: "min(90vw, 480px)" }
-                      : { maxHeight: "85vh", maxWidth: "90vw" }
-                  }
+              <div
+                className="relative w-full bg-black border border-aqua/30 overflow-hidden"
+                style={{ aspectRatio: "16 / 9", maxHeight: "85vh" }}
+              >
+                <iframe
+                  src={`https://player.vimeo.com/video/${demo.vimeoId}?autoplay=1`}
+                  className="absolute inset-0 w-full h-full"
+                  frameBorder={0}
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  title={demo.title}
                 />
               </div>
               <div className="w-full bg-card border border-border p-5 flex items-center justify-between gap-6">
