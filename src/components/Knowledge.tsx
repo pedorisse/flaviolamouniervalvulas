@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import valve from "@/assets/valve-borboleta.mp4.asset.json";
 import presenter from "@/assets/flavio-visita.mp4.asset.json";
-import drone from "@/assets/drone.mp4.asset.json";
 
 
 const filters = [
@@ -14,7 +13,7 @@ type F = typeof filters[number];
 
 const items: { id: number; title: string; subtitle: string; cat: F[]; src: string }[] = [
   { id: 1, title: "Funcionamento de válvulas borboleta", subtitle: "Princípios mecânicos aplicados em sistemas de controle de fluxo", cat: ["Válvulas Industriais"], src: valve.url },
-  { id: 2, title: "ETA e ETE na prática", subtitle: "Aplicações em sistemas de abastecimento e tratamento", cat: ["Saneamento", "Válvulas Industriais"], src: drone.url },
+  { id: 2, title: "ETA e ETE na prática", subtitle: "Aplicações em sistemas de abastecimento e tratamento", cat: ["Saneamento", "Válvulas Industriais"], src: "/media/drone-leve.mp4" },
   { id: 3, title: "Visitas técnicas e operação em campo", subtitle: "Experiência prática em estações de tratamento e grandes sistemas", cat: ["Saneamento", "Válvulas Industriais"], src: presenter.url },
 ];
 
