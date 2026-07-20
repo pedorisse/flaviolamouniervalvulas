@@ -147,8 +147,8 @@ export function Projects() {
               className="relative flex flex-col items-center gap-4 w-full max-w-[1200px]"
             >
               <div
-                className="relative w-full bg-black border border-aqua/30 overflow-hidden"
-                style={{ aspectRatio: "16 / 9", maxHeight: "85vh" }}
+                className="relative mx-auto bg-black border border-aqua/30 overflow-hidden"
+                style={{ aspectRatio: "9 / 16", width: "min(100%, calc(85vh * 9 / 16))" }}
               >
                 <iframe
                   src={`https://player.vimeo.com/video/${demo.vimeoId}?autoplay=1`}
