@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProjetoValvulasV8m31xRouteImport } from './routes/projeto-valvulas-v8m31x'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ProjetoValvulasV8m31xRoute = ProjetoValvulasV8m31xRouteImport.update({
+  id: '/projeto-valvulas-v8m31x',
+  path: '/projeto-valvulas-v8m31x',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/projeto-valvulas-v8m31x': typeof ProjetoValvulasV8m31xRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/projeto-valvulas-v8m31x': typeof ProjetoValvulasV8m31xRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/projeto-valvulas-v8m31x': typeof ProjetoValvulasV8m31xRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/projeto-valvulas-v8m31x'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/projeto-valvulas-v8m31x'
+  id: '__root__' | '/' | '/projeto-valvulas-v8m31x'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjetoValvulasV8m31xRoute: typeof ProjetoValvulasV8m31xRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/projeto-valvulas-v8m31x': {
+      id: '/projeto-valvulas-v8m31x'
+      path: '/projeto-valvulas-v8m31x'
+      fullPath: '/projeto-valvulas-v8m31x'
+      preLoaderRoute: typeof ProjetoValvulasV8m31xRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjetoValvulasV8m31xRoute: ProjetoValvulasV8m31xRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
