@@ -28,13 +28,16 @@ export function FinalCTA() {
           transition={{ duration: 1, delay: 1.4 }} viewport={{ once: true }}
           className="flex flex-wrap items-center justify-center gap-4 pt-6"
         >
-          <a href="#" className="group relative px-10 py-4 bg-aqua text-primary-foreground uppercase tracking-[0.25em] text-xs font-medium overflow-hidden">
+          <a
+            href="https://wa.me/5511983894242?text=Ol%C3%A1%2C%20Fl%C3%A1vio.%20Tenho%20interesse%20em%20uma%20solu%C3%A7%C3%A3o%20com%20v%C3%A1lvulas."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Agendar uma reunião técnica com Flávio Lamounier pelo WhatsApp"
+            className="group relative inline-flex items-center justify-center px-10 py-4 bg-aqua text-primary-foreground uppercase tracking-[0.25em] text-xs font-medium overflow-hidden cursor-pointer"
+          >
             <span className="relative z-10">Agendar uma Reunião Técnica</span>
             <span className="absolute inset-0 bg-foreground translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             <span className="absolute inset-0 flex items-center justify-center text-background opacity-0 group-hover:opacity-100 transition-opacity delay-200 uppercase tracking-[0.25em] text-xs font-medium">Agendar uma Reunião Técnica</span>
-          </a>
-          <a href="#projetos" className="px-10 py-4 border border-foreground/30 text-foreground uppercase tracking-[0.25em] text-xs hover:border-aqua hover:text-aqua transition-colors">
-            Ver Portfólio Completo
           </a>
         </motion.div>
       </div>
